@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import { urlB64ToUint8Array } from "@/lib/utils";
+import {useState, useEffect} from "react";
+import {urlB64ToUint8Array} from "@/lib/utils";
 
 export type NotificationStatus = "granted" | "denied" | "default";
 
@@ -78,6 +78,13 @@ const NotificationRequest = () => {
       console.log("This browser does not support notifications.");
     }
   }, []);
+
+  useEffect(() => {
+    if (notificationPermission === "granted") {
+      subscribeUser();
+    }
+    // eslint-disable-next-line
+  }, [notificationPermission]);
 
   return (
     <div>
